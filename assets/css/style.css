@@ -118,9 +118,15 @@ a:focus {
 	color: white;
 }
 
+.btn-cta {
+	background: #cc0033;
+	color: white;
+	border-radius: 2px;
+}
+
 /* HORIZONTAL LINE */
 hr {
-	border: 1px solid #1abc9c;
+	border: 1px solid #008185;
 	width: 120px;
 }
 
@@ -132,7 +138,7 @@ h4 {
 
 /* Color Theme */
 .green {
-	color: #1abc9c;
+	color: #008185;
 }
 
 /* Size Helper */
@@ -179,7 +185,7 @@ h4 {
 	text-align: center;
 	color: white;
 	margin-bottom: 120px;
-	border: 3px solid white;
+	border: 3px solid #008185;
 	width: 150px;
 	padding: 12px;
 }
