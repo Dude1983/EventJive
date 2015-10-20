@@ -190,6 +190,11 @@ h4 {
 	padding: 12px;
 }
 
+#h h3.header-logo {
+	text-align: center;
+    margin-bottom: 80px;
+}
+
 #h h1 {
 	color: white;
 	font-size: 70px;
@@ -210,8 +215,21 @@ h4 {
 	padding-bottom: 50px;
 }
 
+#social-proof {
+	background: #ffffff;
+	color: #5a5a5a;
+	text-align: center;
+}
+
 #cta h2 {
 	text-align: center;
+}
+
+.shelf .clogo {
+    margin: 20px;
+    vertical-align: middle;
+    max-width:150px;
+	height:70px;
 }
 
 /* GREY SECTION */
