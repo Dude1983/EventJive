@@ -38,18 +38,29 @@
 			<div class="row centered">
 				
 				<h3 class="header-logo"><img src="assets/img/eventjive-logo.png"></img></h3>
-				<h1>Join the first live chat community<br/>for event professionals</h1>
+				<h1>An invite-only live chat community<br/>for event professionals</h1>
 				
 				<div class="col-md-6 col-md-offset-3 mt">
-					<?php 
-					   if(isset($_GET['refer'])) { 
-					?>
-                          <input type="hidden" value="<?php echo $_GET['refer'];?>" name="refer">
-                    <?php } ?>
+					
 					<form role="form" action="save.php" method="POST" enctype="plain"> 
-	    				<input type="email" name="email" class="subscribe-input" placeholder="Your work email..." required>
+					    <?php 
+					      if(isset($_GET['refer'])) { 
+					     ?>
+                          <input type="hidden" value="<?php echo $_GET['refer'];?>" name="refer">
+                          <input type="email" name="email" class="subscribe-input" placeholder="Your work email..." required>
 						<button class='btn btn-lg btn-cta subscribe-submit' type="submit">Knock Knock</button>
-					    <p class="aligncenter">Already a member? <b><u><a href="http://eventjive.slack.com">sign in here</a></u></b></p>
+						<p><i class="ion-checkmark-round green"></i>Your invitation has been accepted. Come on in. <b>
+                         <?php 
+                           } 
+                           else {
+                         ?>
+                           <div class="alert alert-danger" role="alert" style="opacity: 0.7;">
+				              <h2 style="color: #a94442; font-size: 3.0rem;"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>&nbsp;  Ask your industry friends & colleagues OR <a href="#pre-register">register your interest.</a></h2>
+			               </div>
+			               <p>Already a member of #EventJive? <a href="http://eventjive.slack.com"><u><b>Sign in here.</b></u></a></p>
+			             <?php  
+                           }
+                         ?>
 					</form>
 				</div>
 			</div><! --/row -->
@@ -277,7 +288,8 @@
 		<div class="container">
 			<div class="row mt">
 				<div class="col-md-6 col-md-offset-3 centered">
-					<h2>Not yet ready to join?</h2>
+					<a name="pre-register"></a>
+					<h2>Don't have an invite link?</br>Register your interest here below.</h2>
 					<hr class="aligncenter">
 					<p>Each week, we’ll serve up a something fresh from the community in a newsletter to give you a taste of what’s behind the #EventJive gates. </p>
 				</div><!-- /col-md-6-->
@@ -286,8 +298,8 @@
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3 mt centered">
 					<form role="form" action="register.php" method="post" enctype="plain"> 
-	    				<input type="email" name="email" class="subscribe-input" placeholder="Enter your e-mail address..." required>
-						<button class='btn btn-lg btn-green subscribe-submit' type="submit">Subscribe</button>
+	    				<input type="email" name="email" class="subscribe-input" placeholder="Your work email..." required>
+						<button class='btn btn-lg btn-cta subscribe-submit' type="submit">Register Interest</button>
 					</form>
 				</div>
 			</div><! --/row -->
