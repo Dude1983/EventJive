@@ -4,14 +4,14 @@ session_start();
 include('config.php'); //Includes configuration files
 require_once 'Mandrill.php';
 
-$servername = getenv('IP');
-$username = getenv('C9_USER');
-$password = "";
-$database = "c9";
-$dbport = 3306;
+$servername = 'localhost';
+$username = 'c50plusf_carsten';
+$password = 'Alison07!';
+$database = 'c50plusf_eventjive';
+// $dbport = 3306;
 
 // Create connection
-$db = new mysqli($servername, $username, $password, $database, $dbport);
+$db = new mysqli($servername, $username, $password, $database);
 
 // Check connection
 if ($db->connect_error) {
