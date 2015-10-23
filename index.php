@@ -48,8 +48,8 @@
 					     ?>
                           <input type="hidden" value="<?php echo $_GET['refer'];?>" name="refer">
                           <input type="email" name="email" class="subscribe-input" placeholder="Your work email..." required>
-						<button class='btn btn-lg btn-cta subscribe-submit' type="submit">Knock Knock</button>
-						<p><i class="ion-checkmark-round green"></i>Your invitation has been accepted. Come on in. <b>
+						  <button class='btn btn-lg btn-cta subscribe-submit' type="submit">Knock Knock</button>
+						  <p><i class="ion-checkmark-round green"></i>Your invitation has been accepted. Come on in. <b>
                          <?php 
                            } 
                            else {
@@ -57,7 +57,7 @@
                            <div class="alert alert-danger" role="alert" style="opacity: 0.7;">
 				              <h2 style="color: #a94442; font-size: 3.0rem;"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>&nbsp;  Ask your industry friends & colleagues OR <a href="#pre-register">register your interest.</a></h2>
 			               </div>
-			               <p>Already a member of #EventJive? <a href="http://eventjive.slack.com"><u><b>Sign in here.</b></u></a></p>
+			               <p>already a member? <a href="http://eventjive.slack.com"><u><b>sign in here.</b></u></a></p>
 			             <?php  
                            }
                          ?>
@@ -297,8 +297,8 @@
 			
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3 mt centered">
-					<form role="form" action="register.php" method="post" enctype="plain"> 
-	    				<input type="email" name="email" class="subscribe-input" placeholder="Your work email..." required>
+					<form role="mailing-list" action="save.php" method="post" enctype="plain"> 
+	    				<input type="email" name="mailing-submit" class="subscribe-input" placeholder="Your work email..." required>
 						<button class='btn btn-lg btn-cta subscribe-submit' type="submit">Register Interest</button>
 					</form>
 				</div>

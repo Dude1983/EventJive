@@ -1,30 +1,38 @@
 <?php
+session_start();
 
-if( $_POST ) 
-{
-    include('config.php'); //Includes configuration files
-    require_once 'Mandrill.php';
-    
+include('config.php'); //Includes configuration files
+require_once 'Mandrill.php';
+
+$servername = getenv('IP');
+$username = getenv('C9_USER');
+$password = "";
+$database = "c9";
+$dbport = 3306;
+
+// Create connection
+$db = new mysqli($servername, $username, $password, $database, $dbport);
+
+// Check connection
+if ($db->connect_error) {
+   die("Connection failed: " . $db->connect_error);
+} 
+
+// If email submit is posted
+if (isset($_POST['email'])){
+
     $refer = $_POST['refer']; // Gets reference number if applicable
-    $email = $_POST['email'];
-    $apikey = "N22ZhMNFJI85ZqXmDp8dlA";
-    
-    $servername = getenv('IP');
-    $username = getenv('C9_USER');
-    $password = "";
-    $database = "c9";
-    $dbport = 3306;
-
-    // Create connection
-    $db = new mysqli($servername, $username, $password, $database, $dbport);
-
-    // Check connection
-    if ($db->connect_error) {
-        die("Connection failed: " . $db->connect_error);
-    } 
+    $email = $_POST['email']; // Gets the email from the form 
+    $apikey = "Cw3EFu2V5NGZxld-JsdtkQ"; // Test API - don't forget to change
     
     // Insert email into database if not empty and no duplicate
     if(!empty($email)) {
+        
+       // Sanitize String
+       $email = $db->real_escape_string($email); 
+       
+       // Saves email in Session
+       $_SESSION["email"] = $email;    
         
        // Create unique InviteCode
        $length = 10;
@@ -34,14 +42,11 @@ if( $_POST )
 	      $inviteCode .= $characters[mt_rand(0, strlen($characters))];
        }
        
-       // Sanitize String
-       $email = $db->real_escape_string($email); 
-       
        // Check for duplicate emails
        $select = $db->query("SELECT email FROM users WHERE email = '$email'") or die(mysql_error());
        if(mysqli_num_rows($select)) { exit ("This email is already being used"); }
        
-       // Insert email into database
+       // Insert email into users database
        $query = $db->query("INSERT INTO users VALUES ('', '$email', '$inviteCode')");
  	      if(isset($refer)){
  		     $query = $db->query("INSERT INTO referrals VALUES ('', '$refer','$id')"); //Add reference to id
@@ -73,5 +78,30 @@ if( $_POST )
        $message->to = array(array("email" => "$email"));
        $message->track_opens = true;
        $response = $mandrill->messages->send($message);
+       
+       // Redirect to the application page
+       header("Location: application.php");
 };
+
+if (isset($_POST['mailing-submit'])){
+   
+   $mailing = $_POST['mailing-submit']; // Gets the email from the form 
+   
+   // Insert email into database if not empty and no duplicate
+   if(!empty($mailing)) {
+      
+      // Sanitize String
+      $mailing = $db->real_escape_string($mailing); 
+      
+      // Check for duplicate emails
+      $select = $db->query("SELECT email FROM mailings WHERE email = '$mailing'") or die(mysql_error());
+      if(mysqli_num_rows($select)) { exit ("This email is already on our mailing list"); }
+       
+       // Insert email into mailings database
+       $query = $db->query("INSERT INTO mailings VALUES ('', '$mailing')");
+ 	   
+ 	   // Redirect to the application page
+       header("Location: index.php");
+   }      
+}
 ?>
