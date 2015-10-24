@@ -6,8 +6,8 @@ require_once 'Mandrill.php';
 
 $servername = 'localhost';
 $username = 'c50plusf_carsten';
-$password = 'Alison07!';
-$database = 'c50plusf_eventjive';
+$password = "Alison07!";
+$database = "c50plusf_eventjive";
 // $dbport = 3306;
 
 // Create connection
@@ -23,7 +23,8 @@ if (isset($_POST['email'])){
 
     $refer = $_POST['refer']; // Gets reference number if applicable
     $email = $_POST['email']; // Gets the email from the form 
-    $apikey = "Cw3EFu2V5NGZxld-JsdtkQ"; // Test API - don't forget to change
+    // $apikey = "Cw3EFu2V5NGZxld-JsdtkQ"; // Test API key - don't forget to change
+    $apikey = "N22ZhMNFJI85ZqXmDp8dlA"; // Live Mandrill App key
     
     // Insert email into database if not empty and no duplicate
     if(!empty($email)) {
@@ -48,9 +49,9 @@ if (isset($_POST['email'])){
        
        // Insert email into users database
        $query = $db->query("INSERT INTO users VALUES ('', '$email', '$inviteCode')");
- 	      if(isset($refer)){
- 		     $query = $db->query("INSERT INTO referrals VALUES ('', '$refer','$id')"); //Add reference to id
- 	      } 
+ 	      // if(isset($refer)){
+ 		     // $query = $db->query("INSERT INTO referrals VALUES ('', '$refer','$id')"); //Add reference to id
+ 	      // } 
        }
        
        // Get Invite link
@@ -64,15 +65,17 @@ if (isset($_POST['email'])){
        $message = new stdClass();
        $message->html = "
           <b>What if you send a quick note to your event industry friends:</b></ br> 
-          <a href= '" . URL . "?refer=$id'>" . URL . "?refer=$id</a><br>
+          <a href= '" . URL . "?refer=$id'>" . URL . "?refer=$id</a></ br>
+          <p>If you haven't done already, please complete your registration 
+          <a href='https://eventjive.typeform.com/to/Ayy08n" . "?email=$email'>here.</a></br>
           <p><b>Your invite link</b><br>
-          There is no way fr your friends to join the #EventJive community without your
+          There is no way for your friends to join the #EventJive community without your
           invite link. <a href='http://www.eventjive.com'>EventJive.co</a> is an invite-only
           community of event professionals. Members from companies like IMEX, IBTM, MPI, sli.do, etouches are among them.
           Your invite link: <a href= '" . URL . "?refer=$id'>" . URL . "?refer=$id</a><br>
           "; 
        $message->text = "text body";
-       $message->subject = "#EventJive ★ Welcome on board";
+       $message->subject = "#EventJive ★ Share the love";
        $message->from_email = "carsten@eventjive.co";
        $message->from_name  = "Carsten at EventJive";
        $message->to = array(array("email" => "$email"));

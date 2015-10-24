@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="EventJive.co is an invite-only chat community for event professionals.">
+    <meta name="author" content="EventJive.co.uk">
     <link rel="icon" href="assets/img/favicon.ico">
 
     <title>#EventJive - Chat Community for Event Professionals</title>
@@ -30,7 +30,7 @@
   </head>
 
   <body>
-  
+  <?php include_once("analyticstracking.php") ?> 	
   
 	<! -- ********** HEADER SECTION ********** --> 
 	<div id="h">
@@ -55,7 +55,7 @@
                            else {
                          ?>
                            <div class="alert alert-danger" role="alert" style="opacity: 0.7;">
-				              <h2 style="color: #a94442; font-size: 3.0rem;"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>&nbsp;  Ask your industry friends & colleagues OR <a href="#pre-register">register your interest.</a></h2>
+				              <h2 style="color: #a94442; font-size: 3.0rem;"><span class="glyphicon glyphicon-ban-circle" aria-hidden="true"></span>&nbsp;  Ask your industry friends & colleagues to join OR <br> <a href="#pre-register">register your interest.</a></h2>
 			               </div>
 			               <p>already a member? <a href="http://eventjive.slack.com"><u><b>sign in here.</b></u></a></p>
 			             <?php  
